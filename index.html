@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Навчальна сторінка з прикладами HTML">
+
+    <title>Самостійна робота до лекції №1</title>
+
+    <!-- Favicon через SVG Data URI -->
+    <link rel="icon"
+          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+
+    <style>
+
+        /* =========================================
+           1. ЗАГАЛЬНІ СТИЛІ
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f6f9;
+            color: #222;
+        }
+
+        a {
+            color: #1456a0;
+        }
+
+        a:hover {
+            color: #d35400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .example {
+            background-color: #f8fafc;
+            border-left: 5px solid #2563eb;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        .example h3 {
+            margin-top: 0;
+        }
+
+        .code {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+        }
+
+        .note {
+            background-color: #fff7ed;
+            border-left: 5px solid #f97316;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .button {
+            display: inline-block;
+            border: none;
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #1d4ed8;
+            color: white;
+        }
+
+        .button-secondary {
+            background-color: #64748b;
+        }
+
+        .button-secondary:hover {
+            background-color: #475569;
+        }
+
+        /* =========================================
+           2. HEADER
+        ========================================= */
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        /* =========================================
+           3. НАВІГАЦІЯ
+        ========================================= */
+
+        nav {
+            background-color: #172554;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 12px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        /* =========================================
+           4. ЗАГОЛОВКИ
+        ========================================= */
+
+        .heading-demo h1,
+        .heading-demo h2,
+        .heading-demo h3,
+        .heading-demo h4,
+        .heading-demo h5,
+        .heading-demo h6 {
+            margin: 8px 0;
+        }
+
+        /* =========================================
+           5. ПОСИЛАННЯ
+        ========================================= */
+
+        .link-demo a {
+            margin-right: 15px;
+        }
+
+        .link-blue {
+            color: blue;
+        }
+
+        .link-green {
+            color: green;
+        }
+
+        .link-red {
+            color: red;
+        }
+
+        .link-purple {
+            color: purple;
+        }
+
+        /* =========================================
+           6. ЗОБРАЖЕННЯ
+        ========================================= */
+
+        .demo-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .background-demo {
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.35)
+                ),
+                url("https://picsum.photos/id/1015/1000/400");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 80px 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .picture-demo img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* =========================================
+           7. ТАБЛИЦІ
+        ========================================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #94a3b8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #dbeafe;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background-color: #e0f2fe;
+        }
+
+        .table-spacing {
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        .table-spacing td,
+        .table-spacing th {
+            border: 1px solid #64748b;
+        }
+
+        .table-padding td,
+        .table-padding th {
+            padding: 25px;
+        }
+
+        .colgroup-first {
+            background-color: #eff6ff;
+        }
+
+        .colgroup-second {
+            background-color: #fef3c7;
+        }
+
+        /* =========================================
+           8. СПИСКИ
+        ========================================= */
+
+        .list-columns {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(250px, 1fr)
+            );
+            gap: 25px;
+        }
+
+        /* =========================================
+           9. ФОРМИ
+        ========================================= */
+
+        form {
+            max-width: 700px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="color"]),
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        input[type="color"] {
+            width: 80px;
+            height: 40px;
+        }
+
+        .inline-label {
+            display: inline-block;
+            font-weight: normal;
+            margin-right: 15px;
+        }
+
+        .form-result {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #ecfdf5;
+            border-left: 4px solid #10b981;
+            border-radius: 5px;
+        }
+
+        /* =========================================
+           10. HTML5
+        ========================================= */
+
+        .semantic-demo {
+            border: 2px solid #94a3b8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .semantic-demo header,
+        .semantic-demo footer {
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 15px;
+        }
+
+        .semantic-demo nav {
+            position: static;
+            background: #eff6ff;
+            padding: 15px;
+        }
+
+        .semantic-demo nav a {
+            color: #1e40af;
+        }
+
+        .semantic-demo main {
+            padding: 20px;
+        }
+
+        .semantic-demo section {
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+        }
+
+        .semantic-demo aside {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fef3c7;
+        }
+
+        progress,
+        meter {
+            width: 100%;
+            height: 25px;
+        }
+
+        /* =========================================
+           11. TABS
+        ========================================= */
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            border: none;
+            background-color: #cbd5e1;
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .tab-button.active {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* =========================================
+           12. FOOTER
+        ========================================= */
+
+        footer.main-footer {
+            margin-top: 40px;
+            background-color: #172554;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer.main-footer a {
+            color: #bfdbfe;
+        }
+
+        /* =========================================
+           13. АДАПТИВНІСТЬ
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .nav-container {
+                justify-content: flex-start;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header>
+        <div class="container">
+
+            <h1>HTML Showcase</h1>
+
+            <p>
+                Самостійна робота до лекції №1
+            </p>
+
+        </div>
+    </header>
+
+
+    <!-- =========================================
+         НАВІГАЦІЯ
+    ========================================= -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a href="#basics">Основи</a>
+
+            <a href="#text">Текст</a>
+
+            <a href="#links">Посилання</a>
+
+            <a href="#images">Зображення</a>
+
+            <a href="#tables">Таблиці</a>
+
+            <a href="#lists">Списки</a>
+
+            <a href="#forms">Форми</a>
+
+            <a href="#html5">HTML5</a>
+
+            <a href="#extra">Додатково</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- =========================================
+             1. ОСНОВИ HTML
+        ========================================= -->
+
+        <section id="basics">
+
+            <div class="card">
+
+                <h2>1. Основи HTML</h2>
+
+                <p>
+                    HTML — це мова розмітки гіпертексту,
+                    яка використовується для створення
+                    структури вебсторінок.
+                </p>
+
+                <h3>Приклад HTML-елемента</h3>
+
+                <div class="example">
+
+                    <h3>Відображення заголовка</h3>
+
+                    <h1>Заголовок першого рівня</h1>
+
+                    <p>
+                        Це звичайний абзац тексту.
+                    </p>
+
+                </div>
+
+                <h3>HTML-атрибути</h3>
+
+                <div class="example">
+
+                    <p title="Це підказка">
+                        Наведи курсор на цей текст.
+                    </p>
+
+                    <p id="attribute-example">
+                        Елемент має атрибут id.
+                    </p>
+
+                    <p class="example-text">
+                        Елемент має атрибут class.
+                    </p>
+
+                </div>
+
+                <h3>Приклад коду</h3>
+
+                <pre class="code"><code>&lt;h1&gt;Мій заголовок&lt;/h1&gt;
+
+&lt;p title="Підказка"&gt;
+    Текст абзацу.
+&lt;/p&gt;</code></pre>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             2. ТЕКСТ І ПАРАГРАФИ
+        ========================================= -->
+
+        <section id="text">
+
+            <div class="card">
+
+                <h2>2. Текст, заголовки та параграфи</h2>
+
+                <h3>Рівні заголовків</h3>
+
+                <div class="example heading-demo">
+
+                    <h1>Заголовок H1</h1>
+
+                    <h2>Заголовок H2</h2>
+
+                    <h3>Заголовок H3</h3>
+
+                    <h4>Заголовок H4</h4>
+
+                    <h5>Заголовок H5</h5>
+
+                    <h6>Заголовок H6</h6>
+
+                </div>
+
+                <h3>Параграфи</h3>
+
+                <p>
+                    Це перший параграф.
+                    Він містить текст, який
+                    відображається у браузері.
+                </p>
+
+                <p>
+                    Це другий параграф.
+                    Параграфи допомагають
+                    структурувати текст.
+                </p>
+
+                <h3>Перенесення рядка</h3>
+
+                <p>
+                    Перший рядок.<br>
+                    Другий рядок.<br>
+                    Третій рядок.
+                </p>
+
+                <h3>Форматування тексту</h3>
+
+                <div class="example">
+
+                    <p>
+                        <b>Жирний текст</b>
+                    </p>
+
+                    <p>
+                        <strong>Важливий текст</strong>
+                    </p>
+
+                    <p>
+                        <i>Курсивний текст</i>
+                    </p>
+
+                    <p>
+                        <em>Виділений текст</em>
+                    </p>
+
+                    <p>
+                        <mark>Виділений маркером текст</mark>
+                    </p>
+
+                    <p>
+                        <small>Маленький текст</small>
+                    </p>
+
+                    <p>
+                        <del>Видалений текст</del>
+                    </p>
+
+                    <p>
+                        <ins>Вставлений текст</ins>
+                    </p>
+
+                    <p>
+                        H<sub>2</sub>O
+                    </p>
+
+                    <p>
+                        x<sup>2</sup>
+                    </p>
+
+                </div>
+
+                <h3>Цитата</h3>
+
+                <blockquote cite="https://www.w3.org/">
+
+                    HTML використовується
+                    для структурування вебконтенту.
+
+                </blockquote>
+
+                <h3>Горизонтальна лінія</h3>
+
+                <p>Текст до роздільника.</p>
+
+                <hr>
+
+                <p>Текст після роздільника.</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             3. ПОСИЛАННЯ
+        ========================================= -->
+
+        <section id="links">
+
+            <div class="card">
+
+                <h2>3. HTML-посилання</h2>
+
+                <h3>Зовнішні посилання</h3>
+
+                <div class="example link-demo">
+
+                    <a href="https://www.google.com"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Google
+
+                    </a>
+
+                    <a href="https://www.wikipedia.org"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Wikipedia
+
+                    </a>
+
+                    <a href="https://w3schoolsua.github.io/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        W3Schools українською
+
+                    </a>
+
+                </div>
+
+                <h3>Різні кольори посилань</h3>
+
+                <div class="example">
+
+                    <a href="#top" class="link-blue">
+                        Синє посилання
+                    </a>
+
+                    <br>
+
+                    <a href="#top" class="link-green">
+                        Зелене посилання
+                    </a>
+
+                    <br>
+
+                    <a href="#top" class="link-red">
+                        Червоне посилання
+                    </a>
+
+                    <br>
+
+                    <a href="#top" class="link-purple">
+                        Фіолетове посилання
+                    </a>
+
+                </div>
+
+                <h3>Посилання-закладки</h3>
+
+                <p>
+                    <a href="#tables">
+                        Перейти до розділу таблиць
+                    </a>
+                </p>
+
+                <p>
+                    <a href="#forms">
+                        Перейти до розділу форм
+                    </a>
+                </p>
+
+                <p>
+                    <a href="#top">
+                        Повернутися на початок
+                    </a>
+                </p>
+
+                <h3>Посилання на email</h3>
+
+                <p>
+                    <a href="mailto:example@example.com">
+                        Написати електронного листа
+                    </a>
+                </p>
+
+                <h3>Посилання для телефонного номера</h3>
+
+                <p>
+                    <a href="tel:+380000000000">
+                        Зателефонувати
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             4. ЗОБРАЖЕННЯ
+        ========================================= -->
+
+        <section id="images">
+
+            <div class="card">
+
+                <h2>4. HTML-зображення</h2>
+
+                <h3>Звичайне зображення</h3>
+
+                <div class="example">
+
+                    <img
+                        src="https://picsum.photos/id/1015/600/300"
+                        alt="Пейзаж із горами та річкою"
+                        width="600"
+                        class="demo-image"
+                    >
+
+                    <p>
+                        Зображення завантажене
+                        з зовнішнього ресурсу.
+                    </p>
+
+                </div>
+
+                <h3>Альтернативний текст</h3>
+
+                <p>
+                    Атрибут alt описує зображення
+                    для користувачів та допоміжних технологій.
+                </p>
+
+                <h3>Фонове зображення</h3>
+
+                <div class="background-demo">
+
+                    <h2>Фонове зображення</h2>
+
+                    <p>
+                        Текст над фоновим зображенням
+                    </p>
+
+                </div>
+
+                <h3>Елемент picture</h3>
+
+                <div class="example picture-demo">
+
+                    <picture>
+
+                        <source
+                            media="(max-width: 600px)"
+                            srcset="https://picsum.photos/id/1025/400/250"
+                        >
+
+                        <img
+                            src="https://picsum.photos/id/1025/800/400"
+                            alt="Собака"
+                        >
+
+                    </picture>
+
+                    <p>
+                        Браузер може вибирати
+                        зображення залежно від ширини екрана.
+                    </p>
+
+                </div>
+
+                <h3>Карта зображення</h3>
+
+                <div class="example">
+
+                    <p>
+                        Натисни на ліву або праву
+                        частину зображення.
+                    </p>
+
+                    <img
+                        src="https://dummyimage.com/600x200/dbeafe/1e3a8a&text=Image+Map"
+                        alt="Демонстраційна карта зображення"
+                        usemap="#demo-map"
+                        width="600"
+                        height="200"
+                        style="max-width: 100%; height: auto;"
+                    >
+
+                    <map name="demo-map">
+
+                        <area
+                            shape="rect"
+                            coords="0,0,300,200"
+                            href="#basics"
+                            alt="Перейти до основ"
+                        >
+
+                        <area
+                            shape="rect"
+                            coords="300,0,600,200"
+                            href="#html5"
+                            alt="Перейти до HTML5"
+                        >
+
+                    </map>
+
+                </div>
+
+                <div class="note">
+
+                    <strong>Примітка:</strong>
+
+                    Карта зображення використовує
+                    координати активних областей.
+                    Для коректної роботи координати
+                    мають відповідати фактичним розмірам
+                    зображення.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             5. ТАБЛИЦІ
+        ========================================= -->
+
+        <section id="tables">
+
+            <div class="card">
+
+                <h2>5. HTML-таблиці</h2>
+
+                <h3>Базова таблиця</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <caption>
+                            Оцінки за дисциплінами
+                        </caption>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>№</th>
+
+                                <th>Дисципліна</th>
+
+                                <th>Оцінка</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>1</td>
+
+                                <td>HTML</td>
+
+                                <td>95</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>2</td>
+
+                                <td>CSS</td>
+
+                                <td>90</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>3</td>
+
+                                <td>JavaScript</td>
+
+                                <td>88</td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="2">
+                                    Середній бал
+                                </td>
+
+                                <td>91</td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+                <h3>Межі таблиці</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <tr>
+
+                            <th>Назва</th>
+
+                            <th>Значення</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Border</td>
+
+                            <td>1px solid</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Collapse</td>
+
+                            <td>collapse</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Padding у таблиці</h3>
+
+                <div class="table-wrapper">
+
+                    <table class="table-padding">
+
+                        <tr>
+
+                            <th>Комірка</th>
+
+                            <th>Вміст</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>1</td>
+
+                            <td>Великий внутрішній відступ</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>2</td>
+
+                            <td>Приклад padding</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Spacing між комірками</h3>
+
+                <div class="table-wrapper">
+
+                    <table class="table-spacing">
+
+                        <tr>
+
+                            <th>№</th>
+
+                            <th>Назва</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>1</td>
+
+                            <td>HTML</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>2</td>
+
+                            <td>CSS</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Colspan — об'єднання стовпців</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <tr>
+
+                            <th colspan="3">
+                                Загальна інформація
+                            </th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Ім'я</td>
+
+                            <td>Олександр</td>
+
+                            <td>Студент</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Rowspan — об'єднання рядків</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <tr>
+
+                            <th>Предмет</th>
+
+                            <th>Тип</th>
+
+                            <th>Оцінка</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td rowspan="2">
+                                Веброзробка
+                            </td>
+
+                            <td>HTML</td>
+
+                            <td>95</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>CSS</td>
+
+                            <td>90</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Colgroup — група стовпців</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <colgroup>
+
+                            <col class="colgroup-first">
+
+                            <col class="colgroup-second">
+
+                            <col>
+
+                        </colgroup>
+
+                        <tr>
+
+                            <th>Назва</th>
+
+                            <th>Категорія</th>
+
+                            <th>Оцінка</th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>HTML</td>
+
+                            <td>Розмітка</td>
+
+                            <td>95</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>CSS</td>
+
+                            <td>Стилізація</td>
+
+                            <td>90</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <h3>Стилізація таблиці</h3>
+
+                <p>
+                    У таблицях вище продемонстровано:
+                    межі, відступи, об'єднання комірок,
+                    групування стовпців та зміну кольору
+                    рядків при наведенні.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             6. СПИСКИ
+        ========================================= -->
+
+        <section id="lists">
+
+            <div class="card">
+
+                <h2>6. HTML-списки</h2>
+
+                <div class="list-columns">
+
+                    <div>
+
+                        <h3>Невпорядкований список</h3>
+
+                        <ul>
+
+                            <li>HTML</li>
+
+                            <li>CSS</li>
+
+                            <li>JavaScript</li>
+
+                            <li>Git</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Впорядкований список</h3>
+
+                        <ol>
+
+                            <li>Пункт 1</li>
+
+                            <li>Пункт 2</li>
+
+                            <li>Пунки 3</li>
+
+                            <li>Пункт 4</li>
+
+                        </ol>
+
+                    </div>
+
+                </div>
+
+                <h3>Типи нумерації</h3>
+
+                <ol type="A">
+
+                    <li>Перший пункт</li>
+
+                    <li>Другий пункт</li>
+
+                    <li>Третій пункт</li>
+
+                </ol>
+
+                <ol type="I">
+
+                    <li>Пункт перший</li>
+
+                    <li>Пункт другий</li>
+
+                    <li>Пункт третій</li>
+
+                </ol>
+
+                <h3>Вкладені списки</h3>
+
+                <ul>
+
+                    <li>
+                        Frontend
+
+                        <ul>
+
+                            <li>HTML</li>
+
+                            <li>CSS</li>
+
+                            <li>JavaScript</li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+                        Backend
+
+                        <ul>
+
+                            <li>Python</li>
+
+                            <li>PHP</li>
+
+                            <li>Node.js</li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+                <h3>Список визначень</h3>
+
+                <dl>
+
+                    <dt>
+                        HTML
+                    </dt>
+
+                    <dd>
+                        Мова розмітки вебсторінок.
+                    </dd>
+
+                    <dt>
+                        CSS
+                    </dt>
+
+                    <dd>
+                        Мова стилізації вебсторінок.
+                    </dd>
+
+                    <dt>
+                        JavaScript
+                    </dt>
+
+                    <dd>
+                        Мова програмування для вебу.
+                    </dd>
+
+                </dl>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             7. ФОРМИ
+        ========================================= -->
+
+        <section id="forms">
+
+            <div class="card">
+
+                <h2>7. HTML-форми</h2>
+
+                <p>
+                    Форми використовуються для введення
+                    та передавання даних користувача.
+                </p>
+
+                <form id="demo-form"
+                      action="#form-result"
+                      method="get">
+
+                    <h3>Текстове поле</h3>
+
+                    <div class="form-group">
+
+                        <label for="full-name">
+                            Повне ім'я:
+                        </label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="fullName"
+                            placeholder="Введіть ім'я"
+                            minlength="2"
+                            maxlength="50"
+                            required
+                        >
+
+                    </div>
+
+                    <h3>Email</h3>
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Електронна пошта:
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@mail.com"
+                            required
+                        >
+
+                    </div>
+
+                    <h3>Пароль</h3>
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Пароль:
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            minlength="8"
+                            placeholder="Введіть пароль"
+                        >
+
+                    </div>
+
+                    <h3>Числове поле</h3>
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Вік:
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="1"
+                            max="120"
+                            placeholder="Введіть ваш вік"
+                        >
+
+                    </div>
+
+                    <h3>Дата</h3>
+
+                    <div class="form-group">
+
+                        <label for="birthdate">
+                            Дата:
+                        </label>
+
+                        <input
+                            type="date"
+                            id="birthdate"
+                            name="birthdate"
+                        >
+
+                    </div>
+
+                    <h3>Радіокнопки</h3>
+
+                    <div class="form-group">
+
+                        <label>
+                            Оберіть рівень:
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="radio"
+                                name="level"
+                                value="beginner"
+                                required
+                            >
+
+                            Початківець
+
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="radio"
+                                name="level"
+                                value="middle"
+                            >
+
+                            Середній
+
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="radio"
+                                name="level"
+                                value="advanced"
+                            >
+
+                            Просунутий
+
+                        </label>
+
+                    </div>
+
+                    <h3>Checkbox</h3>
+
+                    <div class="form-group">
+
+                        <label>
+                            Оберіть технології:
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="technologies"
+                                value="html"
+                            >
+
+                            HTML
+
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="technologies"
+                                value="css"
+                            >
+
+                            CSS
+
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="technologies"
+                                value="js"
+                            >
+
+                            JavaScript
+
+                        </label>
+
+                    </div>
+
+                    <h3>Випадаючий список</h3>
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            Оберіть місто:
+                        </label>
+
+                        <select id="city" name="city">
+
+                            <option value="">
+                                -- Оберіть місто --
+                            </option>
+
+                            <option value="kyiv">
+                                Київ
+                            </option>
+
+                            <option value="lviv">
+                                Львів
+                            </option>
+
+                            <option value="odesa">
+                                Одеса
+                            </option>
+
+                            <option value="kharkiv">
+                                Харків
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <h3>Textarea</h3>
+
+                    <div class="form-group">
+
+                        <label for="comment">
+                            Коментар:
+                        </label>
+
+                        <textarea
+                            id="comment"
+                            name="comment"
+                            rows="5"
+                            placeholder="Напишіть коментар..."
+                        ></textarea>
+
+                    </div>
+
+                    <h3>Повзунок</h3>
+
+                    <div class="form-group">
+
+                        <label for="rating">
+                            Оцінка:
+                        </label>
+
+                        <input
+                            type="range"
+                            id="rating"
+                            name="rating"
+                            min="1"
+                            max="10"
+                            value="5"
+                        >
+
+                        <output id="rating-output">
+                            5
+                        </output>
+
+                        / 10
+
+                    </div>
+
+                    <h3>Вибір кольору</h3>
+
+                    <div class="form-group">
+
+                        <label for="color">
+                            Колір:
+                        </label>
+
+                        <input
+                            type="color"
+                            id="color"
+                            name="color"
+                            value="#2563eb"
+                        >
+
+                    </div>
+
+                    <h3>Файл</h3>
+
+                    <div class="form-group">
+
+                        <label for="file">
+                            Оберіть файл:
+                        </label>
+
+                        <input
+                            type="file"
+                            id="file"
+                            name="file"
+                        >
+
+                    </div>
+
+                    <h3>Дата та час</h3>
+
+                    <div class="form-group">
+
+                        <label for="meeting">
+                            Дата та час:
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="meeting"
+                            name="meeting"
+                        >
+
+                    </div>
+
+                    <h3>URL</h3>
+
+                    <div class="form-group">
+
+                        <label for="website">
+                            Вебсайт:
+                        </label>
+
+                        <input
+                            type="url"
+                            id="website"
+                            name="website"
+                            placeholder="https://example.com"
+                        >
+
+                    </div>
+
+                    <h3>Пошук</h3>
+
+                    <div class="form-group">
+
+                        <label for="search">
+                            Пошук:
+                        </label>
+
+                        <input
+                            type="search"
+                            id="search"
+                            name="search"
+                            placeholder="Введіть запит"
+                        >
+
+                    </div>
+
+                    <h3>Кнопки форми</h3>
+
+                    <button
+                        type="submit"
+                        class="button"
+                    >
+                        Надіслати
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="button button-secondary"
+                    >
+                        Очистити
+                    </button>
+
+                </form>
+
+                <div
+                    id="form-result"
+                    class="form-result"
+                    hidden
+                ></div>
+
+                <div class="note">
+
+                    <strong>Примітка:</strong>
+
+                    Ця демонстраційна форма
+                    не передає дані на сервер.
+                    JavaScript показує локальне
+                    повідомлення після натискання
+                    кнопки «Надіслати».
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             8. HTML5
+        ========================================= -->
+
+        <section id="html5">
+
+            <div class="card">
+
+                <h2>8. HTML5</h2>
+
+                <h3>Семантичні елементи</h3>
+
+                <div class="semantic-demo">
+
+                    <header>
+
+                        <h3>Header</h3>
+
+                        Заголовкова частина сторінки.
+
+                    </header>
+
+                    <nav>
+
+                        <a href="#top">
+                            Головна
+                        </a>
+
+                        <a href="#about">
+                            Про нас
+                        </a>
+
+                    </nav>
+
+                    <main>
+
+                        <section>
+
+                            <h3>Section</h3>
+
+                            <p>
+                                Тематичний розділ документа.
+                            </p>
+
+                        </section>
+
+                        <aside>
+
+                            <strong>Aside:</strong>
+
+                            Додаткова інформація.
+
+                        </aside>
+
+                    </main>
+
+                    <footer>
+
+                        Footer — нижня частина.
+
+                    </footer>
+
+                </div>
+
+                <h3 id="about">
+                    Audio
+                </h3>
+
+                <div class="example">
+
+                    <audio controls>
+
+                        <source
+                            src="audio.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Ваш браузер не підтримує аудіо.
+
+                    </audio>
+
+                </div>
+
+                <h3>Video</h3>
+
+                <div class="example">
+
+                    <video controls
+                           width="500"
+                           style="max-width: 100%;">
+
+                        <source
+                            src="video.mp4"
+                            type="video/mp4"
+                        >
+
+                        Ваш браузер не підтримує відео.
+
+                    </video>
+
+                </div>
+
+                <h3>Details та Summary</h3>
+
+                <details>
+
+                    <summary>
+                        Що таке HTML5?
+                    </summary>
+
+                    <p>
+                        HTML5 — версія HTML,
+                        яка підтримує семантичні елементи,
+                        мультимедіа та додаткові можливості
+                        форм.
+                    </p>
+
+                </details>
+
+                <h3>Progress</h3>
+
+                <label for="progress">
+                    Прогрес виконання:
+                </label>
+
+                <progress
+                    id="progress"
+                    value="75"
+                    max="100"
+                >
+                    75%
+                </progress>
+
+                <p>
+                    75%
+                </p>
+
+                <h3>Meter</h3>
+
+                <label for="disk">
+                    Використання ресурсу:
+                </label>
+
+                <meter
+                    id="disk"
+                    min="0"
+                    max="100"
+                    value="60"
+                >
+                    60%
+                </meter>
+
+                <p>
+                    Значення: 60 зі 100.
+                </p>
+
+                <h3>Математичні формули</h3>
+
+                <p>
+                    Площа квадрата:
+                    S = a<sup>2</sup>
+                </p>
+
+                <p>
+                    Формула води:
+                    H<sub>2</sub>O
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             9. ДОДАТКОВІ ЕЛЕМЕНТИ
+        ========================================= -->
+
+        <section id="extra">
+
+            <div class="card">
+
+                <h2>9. Додаткові HTML-елементи</h2>
+
+                <h3>Tabs — вкладки</h3>
+
+                <div class="tabs">
+
+                    <button
+                        class="tab-button active"
+                        data-tab="tab1"
+                        type="button"
+                    >
+                        HTML
+                    </button>
+
+                    <button
+                        class="tab-button"
+                        data-tab="tab2"
+                        type="button"
+                    >
+                        CSS
+                    </button>
+
+                    <button
+                        class="tab-button"
+                        data-tab="tab3"
+                        type="button"
+                    >
+                        JavaScript
+                    </button>
+
+                </div>
+
+                <div
+                    id="tab1"
+                    class="tab-content active"
+                >
+
+                    <h3>HTML</h3>
+
+                    <p>
+                        Визначає структуру вебсторінки.
+                    </p>
+
+                </div>
+
+                <div
+                    id="tab2"
+                    class="tab-content"
+                >
+
+                    <h3>CSS</h3>
+
+                    <p>
+                        Відповідає за оформлення
+                        та стилізацію сторінки.
+                    </p>
+
+                </div>
+
+                <div
+                    id="tab3"
+                    class="tab-content"
+                >
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        Додає інтерактивність
+                        і динамічну поведінку.
+                    </p>
+
+                </div>
+
+                <h3>Tooltip — підказка</h3>
+
+                <p
+                    title="Це підказка для користувача"
+                >
+
+                    Наведи курсор на цей текст,
+                    щоб побачити підказку.
+
+                </p>
+
+                <h3>Кнопка з JavaScript</h3>
+
+                <button
+                    type="button"
+                    class="button"
+                    id="hello-button"
+                >
+
+                    Натисни мене
+
+                </button>
+
+                <p id="hello-result"></p>
+
+                <h3>Label</h3>
+
+                <label for="demo-input">
+                    Приклад текстового поля:
+                </label>
+
+                <input
+                    type="text"
+                    id="demo-input"
+                    placeholder="Введіть текст"
+                >
+
+                <h3>Приклад iframe</h3>
+
+                <p>
+                    iframe дозволяє вбудовувати
+                    інший HTML-документ.
+                </p>
+
+                <iframe
+                    title="Вбудований приклад"
+                    srcdoc="
+                        <!DOCTYPE html>
+                        <html lang='uk'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <title>Iframe</title>
+                        </head>
+                        <body>
+                            <h3>Вміст iframe</h3>
+                            <p>
+                                Це окремий HTML-документ.
+                            </p>
+                        </body>
+                        </html>
+                    "
+                    width="100%"
+                    height="180"
+                    style="border: 1px solid #94a3b8;
+                           border-radius: 8px;"
+                ></iframe>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             10. ВИСНОВКИ
+        ========================================= -->
+
+        <section id="conclusion">
+
+            <div class="card">
+
+                <h2>10. Висновки</h2>
+
+                <p>
+                    Під час виконання лабораторної роботи
+                    було розглянуто основні можливості HTML.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Структуру HTML-документа.
+                    </li>
+
+                    <li>
+                        Заголовки та параграфи.
+                    </li>
+
+                    <li>
+                        Атрибути та HTML-елементи.
+                    </li>
+
+                    <li>
+                        Посилання та закладки.
+                    </li>
+
+                    <li>
+                        Зображення та карти зображень.
+                    </li>
+
+                    <li>
+                        Таблиці та списки.
+                    </li>
+
+                    <li>
+                        HTML-форми.
+                    </li>
+
+                    <li>
+                        Семантичні елементи HTML5.
+                    </li>
+
+                    <li>
+                        Додаткові можливості
+                        для створення вебсторінок.
+                    </li>
+
+                </ul>
+
+                <p>
+                    Усі приклади об'єднано
+                    в один HTML-документ.
+                </p>
+
+                <a
+                    href="#top"
+                    class="button"
+                >
+
+                    На початок
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="main-footer">
+
+        <p>
+            HTML Showcase © 2026
+        </p>
+
+        <p>
+            Самостійна робота до лекції №1
+        </p>
+
+        <a href="#top">
+            Повернутися на початок
+        </a>
+
+    </footer>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        // =========================================
+        // 1. ВІДОБРАЖЕННЯ ЗНАЧЕННЯ RANGE
+        // =========================================
+
+        const ratingInput = document.getElementById("rating");
+
+        const ratingOutput = document.getElementById("rating-output");
+
+        ratingInput.addEventListener("input", function () {
+
+            ratingOutput.textContent = ratingInput.value;
+
+        });
+
+
+        // =========================================
+        // 2. ОБРОБКА ФОРМИ
+        // =========================================
+
+        const form = document.getElementById("demo-form");
+
+        const formResult = document.getElementById("form-result");
+
+        form.addEventListener("submit", function (event) {
+
+            // Не переходимо на іншу сторінку.
+            event.preventDefault();
+
+            // Перевіряємо вбудовану валідацію HTML.
+            if (!form.checkValidity()) {
+
+                form.reportValidity();
+
+                return;
+
+            }
+
+            formResult.hidden = false;
+
+            formResult.textContent =
+                "Форму успішно перевірено. " +
+                "Це демонстраційна сторінка, " +
+                "тому дані не надсилаються на сервер.";
+
+        });
+
+
+        // =========================================
+        // 3. КНОПКА З ПОВІДОМЛЕННЯМ
+        // =========================================
+
+        const helloButton = document.getElementById("hello-button");
+
+        const helloResult = document.getElementById("hello-result");
+
+        helloButton.addEventListener("click", function () {
+
+            helloResult.textContent =
+                "Вітаю! JavaScript працює.";
+
+        });
+
+
+        // =========================================
+        // 4. TABS — ВКЛАДКИ
+        // =========================================
+
+        const tabButtons = document.querySelectorAll(".tab-button");
+
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const targetTab = button.dataset.tab;
+
+                // Видаляємо активний стан з кнопок.
+                tabButtons.forEach(function (btn) {
+
+                    btn.classList.remove("active");
+
+                });
+
+                // Ховаємо всі вкладки.
+                tabContents.forEach(function (content) {
+
+                    content.classList.remove("active");
+
+                });
+
+                // Активуємо поточну кнопку.
+                button.classList.add("active");
+
+                // Показуємо відповідну вкладку.
+                document
+                    .getElementById(targetTab)
+                    .classList.add("active");
+
+            });
+
+        });
+
+
+        // =========================================
+        // 5. ПОВІДОМЛЕННЯ ПРО ЗАВАНТАЖЕННЯ
+        // =========================================
+
+        console.log(
+            "HTML Showcase успішно завантажено!"
+        );
+
+    </script>
+
+</body>
+
+</html>
